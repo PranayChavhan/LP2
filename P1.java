@@ -9,6 +9,7 @@ public class P1 {
             this.src = s;
             this.dest = d;
         }
+
     }
 
     public static void createGraph(ArrayList<Edge> graph[]){
@@ -35,9 +36,10 @@ public class P1 {
         graph[5].add(new Edge(6, 5));
     }
 
-    public static void BFS(ArrayList<Edge> graph[], boolean visited[]){
+    public static void BFS(ArrayList<Edge> graph[]){
         Queue<Integer> q = new LinkedList<>();
-        
+        int v = graph.length;
+        boolean visited[] = new boolean[v];
 
         q.add(0);
 
@@ -76,9 +78,9 @@ public class P1 {
        boolean visited[] = new boolean[v];
        createGraph(graph);
 
-       BFS(graph, visited);
+       BFS(graph);
        System.out.println();
-    //    DFS(graph, 0, visited);
+       DFS(graph, 0, visited);
        System.out.println();
         
     }
