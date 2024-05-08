@@ -35,6 +35,8 @@ public class nqueens{
         }
     }
 
+
+    
     private static boolean isSafe(char[][] board, int row, int col){
         int n = board.length;
 
