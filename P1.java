@@ -12,56 +12,56 @@ public class P1 {
 
     }
 
-    public static void createGraph(ArrayList<Edge> graph[]){
-        for(int i = 0; i < graph.length; i++){
-            graph[i] = new ArrayList<>();
-        }
-
-        graph[0].add(new Edge(0, 1));
-        graph[0].add(new Edge(0, 2));
-        graph[1].add(new Edge(1, 0));
-        graph[1].add(new Edge(1, 3));
-        graph[2].add(new Edge(2, 0));
-
-        graph[2].add(new Edge(2, 4));
-        graph[3].add(new Edge(3, 1));
-        graph[3].add(new Edge(3, 4));
-        graph[3].add(new Edge(3, 5));
-        graph[4].add(new Edge(4, 2));
-        graph[4].add(new Edge(4, 3));
-        graph[4].add(new Edge(4, 5));
-        graph[5].add(new Edge(5, 3));
-        graph[5].add(new Edge(5, 4));
-        graph[5].add(new Edge(5, 6));
-        graph[5].add(new Edge(6, 5));
-    }
-
     // public static void createGraph(ArrayList<Edge> graph[]){
     //     for(int i = 0; i < graph.length; i++){
     //         graph[i] = new ArrayList<>();
     //     }
 
-    //     Scanner sc = new Scanner(System.in);
+    //     graph[0].add(new Edge(0, 1));
+    //     graph[0].add(new Edge(0, 2));
+    //     graph[1].add(new Edge(1, 0));
+    //     graph[1].add(new Edge(1, 3));
+    //     graph[2].add(new Edge(2, 0));
 
-    //     System.out.print("Enter the number of edges: ");
-
-    //     int edge = sc.nextInt();
-
-    //     System.out.println("Enter each edge as 'source destination' (e.g. '0 1' for an edge from vertex 0 to vertex 1):");
-    //     for(int i = 0; i < edge; i++){
-    //         System.out.print("Edge " + (i+1) + ": ");
-    //         int src = sc.nextInt();
-    //         int dest = sc.nextInt();
-
-    //         if(src < graph.length && dest < graph.length ){
-    //             graph[src].add(new Edge(src, dest));
-    //         }else{
-    //             System.out.println("Invalid vertices. Please enter valid vertex numbers between 0 and " + (graph.length - 1));
-    //             i--; // Decrement to allow re-entering the invalid edge
-    //         }
-    //     }
-    //     sc.close();
+    //     graph[2].add(new Edge(2, 4));
+    //     graph[3].add(new Edge(3, 1));
+    //     graph[3].add(new Edge(3, 4));
+    //     graph[3].add(new Edge(3, 5));
+    //     graph[4].add(new Edge(4, 2));
+    //     graph[4].add(new Edge(4, 3));
+    //     graph[4].add(new Edge(4, 5));
+    //     graph[5].add(new Edge(5, 3));
+    //     graph[5].add(new Edge(5, 4));
+    //     graph[5].add(new Edge(5, 6));
+    //     graph[5].add(new Edge(6, 5));
     // }
+
+    public static void createGraph(ArrayList<Edge> graph[]){
+        for(int i = 0; i < graph.length; i++){
+            graph[i] = new ArrayList<>();
+        }
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of edges: ");
+
+        int edge = sc.nextInt();
+
+        System.out.println("Enter each edge as 'source destination' (e.g. '0 1' for an edge from vertex 0 to vertex 1):");
+        for(int i = 0; i < edge; i++){
+            System.out.print("Edge " + (i+1) + ": ");
+            int src = sc.nextInt();
+            int dest = sc.nextInt();
+
+            if(src < graph.length && dest < graph.length ){
+                graph[src].add(new Edge(src, dest));
+            }else{
+                System.out.println("Invalid vertices. Please enter valid vertex numbers between 0 and " + (graph.length - 1));
+                i--; // Decrement to allow re-entering the invalid edge
+            }
+        }
+        sc.close();
+    }
 
 
  
@@ -69,6 +69,7 @@ public class P1 {
         Queue<Integer> q = new LinkedList<>();
         Queue<Integer> LevelQueue = new LinkedList<>();
 
+        
         LevelQueue.add(0);
         q.add(start);
 

@@ -67,6 +67,7 @@ public class Dijkstras {
 
                 for(int i = 0; i < graph[curr.n].size(); i++){
                     Edge e = graph[curr.n].get(i);
+                    
                     int u = e.src;
                     int v = e.dest;
 
@@ -89,8 +90,9 @@ public class Dijkstras {
         createGraph(graph);
         int src = 0;
         int dist[] = dijkstras(graph, src);
+        System.out.println("Vertex Distance from Source");
         for(int i=0; i<dist.length; i++) {
-            System.out.println(dist[i]+" ");
+            System.out.println(src+"-> "+ i + "\t\t" + dist[i]);
         }
     }
 }

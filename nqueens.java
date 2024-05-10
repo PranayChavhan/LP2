@@ -22,7 +22,7 @@ public class nqueens{
                 }
                 System.out.println();
             }
-            System.out.println();
+            System.out.println("---------------------------------");
             return;
         }
 

@@ -1,8 +1,7 @@
 import java.util.*;
 
-public class Practice{
+public class aStar{
     public static void main(String[] args) {
-        
         int[][] maze = {
             {0, 1, 0, 0, 0},
             {0, 1, 0, 1, 0},
@@ -11,10 +10,15 @@ public class Practice{
             {0, 0, 0, 0, 0}
         };
 
-        if(AStarMazeSolver.solveMaze(maze, 1, 2, 4, 4)){
+        int startX = 0;
+        int startY = 0;
+        int endX = 4;
+        int endY = 4;
+
+        if(AStarMazeSolver.solveMaze(maze, startX, startY, endX, endY)){
             AStarMazeSolver.printMaze(maze);
         }else{
-            System.out.println("Path not found");
+            System.out.println("No path found");
         }
     }
 }
@@ -29,48 +33,48 @@ class Node implements Comparable<Node>{
         this.parent = parent;
         this.g = g;
         this.h = h;
-        this.f = g + f;
+        this.f = g + h;
     }
 
     @Override
-
     public int compareTo(Node n2){
         return this.f - n2.f;
     }
 }
-class AStarMazeSolver {
+
+class AStarMazeSolver{
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
 
-    public static int manhattanDist(int x1, int y1, int x2, int y2){
-        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
-    }
-    
-    public static void markPath(Node node, int[][] maze){
-        Node current = node;
-    
-        while( current != null){
-            maze[current.x][current.y] = 2;
-            current = current.parent;
-        }
-    }
-    
     public static void printMaze(int[][] maze){
         for(int i = 0; i < maze.length; i++){
-            for(int j = 0; j < maze[0].length; i++){
-                System.out.println(maze[i][j] == 2 ? "* " : maze[i][j] + " ");
+            for(int j = 0; j < maze[0].length; j++){
+                System.out.print(maze[i][j] == 2 ? "* ": maze[i][j] + " ");
             }
             System.out.println();
         }
     }
 
+    public static int manhattanDist(int x1, int y1, int x2, int y2){
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
+
+    public static void markPath(Node node, int[][] maze){
+        Node current = node;
+        while(current != null){
+            maze[current.x][current.y] = 2;
+            current = current.parent;
+        }
+    }
+
     public static boolean solveMaze(int[][] maze, int startX, int startY, int endX, int endY){
+
         int n = maze.length;
         int m = maze[0].length;
 
         PriorityQueue<Node> openList = new PriorityQueue<>();
 
-        boolean[][] closeList = new boolean[n][m];
+        boolean[][] closedList = new boolean[n][m];
 
         openList.add(new Node(startX, startY, null, 0, manhattanDist(startX, startY, endX, endY)));
 
@@ -82,19 +86,20 @@ class AStarMazeSolver {
                 return true;
             }
 
-            closeList[current.x][current.y] = true;
+            closedList[current.x][current.y] = true;
 
             for(int i = 0; i < 4; i++){
-                int nextX = current.x + dx[i];
-                int nextY = current.y + dy[i];
+                int newX = current.x + dx[i];
+                int newY = current.y + dy[i];
 
-                if(nextX >= 0 && nextX < n && nextY >= 0 && nextY < n && maze[nextX][nextY] == 0 && !closeList[nextX][nextY]){
+                if(newX >= 0 && newX < n && newY >= 0 && newY < m && maze[newX][newY] == 0 && !closedList[newX][newY]){
                     int g = current.g + 1;
-                    int h = manhattanDist(nextX, nextY, endX, endY);
-                    openList.add(new Node(nextX, nextY, current, g, h));
+                    int h = manhattanDist(newX, newY, endX, endY);
+                    openList.add(new Node(newX, newY, current, g, h));
                 }
             }
         }
+
         return false;
     }
 }
