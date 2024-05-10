@@ -14,7 +14,12 @@ search_tree = {
     "library": "PICT central library being information hub provides access to full text, digital and printed resources to support the scholarly and informational needs of the students, faculty, researchers, and other users.",
     "timetable": "https://pict.edu/time_table_syllabus/",
     "syllabus": "https://pict.edu/time_table_syllabus/",
-    "hello": "Hello!"
+    "hello": "Hello!",
+    "How": {
+        "are": {
+            "you": "I am fine",
+        }
+    },
 }
 
 context = {
@@ -33,7 +38,7 @@ def search(query: str, subtree):
             break
     else:
         print("Could not understand context, available options are: ")
-        print(children)
+        # print(children)
 
 
 while True:
